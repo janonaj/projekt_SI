@@ -33,4 +33,3 @@ odchylenie = sd(results)
 cat("Jakosc klasyfikatora:", sr_dokladnosc, "\n")
 cat("Odchylenie standardowe:", odchylenie, "\n")
 
-

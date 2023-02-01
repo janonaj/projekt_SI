@@ -11,7 +11,7 @@ data$smoker = as.factor(data$smoker)
 accuracies = c()
 for(i in 1:3){
   #podział danych na zbiór treningowy i testowy
-  trainIndex = sample(1:nrow(data), 0.7 * nrow(data))
+  trainIndex = sample(1:nrow(data), 0.8 * nrow(data))
   trainData = data[trainIndex, ]
   testData = data[-trainIndex, ]
   
@@ -22,14 +22,16 @@ for(i in 1:3){
   #ocena jakości modelu
   pred = predict(fit, newdata = testData, type = "class")
   confMatrix = confusionMatrix(pred,testData$smoker)
+
   
   #zapisanie dokładności
   accuracies[i] = confMatrix$overall[1]
 }
-
+print(confMatrix)
 #obliczanie odchylenia standardowego i średniej dokładności
 meanAccuracy = mean(accuracies)
 sdAccuracy = sd(accuracies)
 
 print(paste("Średnia dokładność", meanAccuracy))
 print(paste("Odchylenie standardowe", sdAccuracy))
+
